@@ -1,5 +1,37 @@
 import { designSystem } from "./design-system";
 
+export const colorValues = {
+  background: {
+    primary: "#0B0F14",
+    secondary: "#111827",
+    tertiary: "#1F2937",
+    elevated: "#252D38",
+  },
+  surface: {
+    base: "#1F2937",
+    elevated: "#252D38",
+  },
+  border: {
+    subtle: "#2D3748",
+    default: "#374151",
+    strong: "#4B5563",
+  },
+  text: {
+    primary: "#E5E7EB",
+    secondary: "#9CA3AF",
+    tertiary: "#6B7280",
+    inverse: "#111827",
+  },
+  accent: {
+    primary: "#3B82F6",
+    primaryHover: "#2563EB",
+    secondary: "#8B5CF6",
+    success: "#10B981",
+    warning: "#F59E0B",
+    error: "#EF4444",
+  },
+};
+
 export const colors = {
   background: {
     primary: "bg-[#0B0F14]",
