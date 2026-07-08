@@ -1,6 +1,3 @@
-// TypeScript may complain about side-effect CSS imports in some setups.
-// Suppress the error for this global stylesheet import.
-// @ts-ignore
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
