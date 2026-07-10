@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Code as Code2, Lock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { colorValues } from "@/lib/design-token";
+import { colorValues } from "@/lib/design-tokens";
 
 export default function LoginPage() {
   const router = useRouter();
