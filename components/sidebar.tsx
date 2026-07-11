@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { colorValues } from "@/lib/design-tokens";
+import { colorValues, gradients } from "@/lib/design-tokens";
 
 interface SidebarProps {
   user?: any;
@@ -42,11 +42,14 @@ export function Sidebar({ user }: SidebarProps) {
       }}
     >
       <div
-        className="p-6 border-b"
+        className="px-6 py-4 border-b"
         style={{ borderColor: colorValues.border.subtle }}
       >
         <Link href="/dashboard" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-xl flex items-center justify-center">
+          <div
+            className="w-10 h-10 rounded-xl flex items-center justify-center"
+            style={{ background: gradients.primary }}
+          >
             <Code2 className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -75,7 +78,9 @@ export function Sidebar({ user }: SidebarProps) {
                 backgroundColor: isActive
                   ? colorValues.accent.primary
                   : "transparent",
-                color: isActive ? "#ffffff" : colorValues.text.secondary,
+                color: isActive
+                  ? colorValues.text["inverse-2"]
+                  : colorValues.text.secondary,
               }}
             >
               <item.icon className="w-5 h-5" />
@@ -94,7 +99,10 @@ export function Sidebar({ user }: SidebarProps) {
             className="flex items-center gap-3 px-4 py-3 rounded-lg"
             style={{ backgroundColor: colorValues.surface.elevated }}
           >
-            <div className="w-8 h-8 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-full flex items-center justify-center">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center"
+              style={{ background: gradients.primary }}
+            >
               <User className="w-4 h-4 text-white" />
             </div>
             <div className="flex-1 min-w-0">

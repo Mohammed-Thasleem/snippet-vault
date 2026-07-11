@@ -21,15 +21,55 @@ export const colorValues = {
     secondary: "#9CA3AF",
     tertiary: "#6B7280",
     inverse: "#111827",
+    "inverse-2": "#FFFFFF",
   },
   accent: {
     primary: "#3B82F6",
     primaryHover: "#2563EB",
     secondary: "#8B5CF6",
+    secondaryHover: "#7C3AED",
     success: "#10B981",
     warning: "#F59E0B",
     error: "#EF4444",
   },
+};
+
+export const gradients = {
+  primary: `linear-gradient(
+    to bottom right,
+    ${colorValues.accent.primary},
+    ${colorValues.accent.secondary}
+  )`,
+  button: `linear-gradient(
+    to right,
+    ${colorValues.accent.primary},
+    ${colorValues.accent.secondary}
+  )`,
+  buttonHover: `linear-gradient(
+  to right,
+  ${colorValues.accent.primaryHover},
+  ${colorValues.accent.secondaryHover}
+)`,
+};
+
+export const overlays = {
+  error: {
+    background: `${colorValues.accent.error}1A`, // 10%
+    border: `${colorValues.accent.error}33`, // 20%
+  },
+};
+
+export const primaryButtonStyle = {
+  background: gradients.button,
+  color: "#fff",
+  boxShadow: `0 10px 20px ${colorValues.accent.primary}33`,
+};
+
+export const backgrounds = {
+  auth: `
+    radial-gradient(circle at 20% 30%, ${colorValues.accent.primary}1A 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, ${colorValues.accent.secondary}1A 0%, transparent 50%)
+  `,
 };
 
 export const colors = {

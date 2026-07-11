@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Clock, Code as Code2, Heart } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
-import { colorValues } from '@/lib/design-tokens';
+import Link from "next/link";
+import { Clock, Code as Code2, Heart } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
+import { colorValues } from "@/lib/design-tokens";
 
 interface SnippetCardProps {
   id: string;
@@ -26,8 +26,9 @@ export function SnippetCard({
   isFavorite = false,
   onFavoriteToggle,
 }: SnippetCardProps) {
-  const preview = code.split('\n').slice(0, 3).join('\n');
-  const truncatedPreview = preview.length > 150 ? preview.slice(0, 150) + '...' : preview;
+  const preview = code.split("\n").slice(0, 3).join("\n");
+  const truncatedPreview =
+    preview.length > 150 ? preview.slice(0, 150) + "..." : preview;
 
   return (
     <div
@@ -38,11 +39,11 @@ export function SnippetCard({
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = colorValues.border.default;
-        e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.2)';
+        e.currentTarget.style.boxShadow = "0 10px 15px -3px rgba(0, 0, 0, 0.2)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = colorValues.border.subtle;
-        e.currentTarget.style.boxShadow = 'none';
+        e.currentTarget.style.boxShadow = "none";
       }}
     >
       <Link href={`/dashboard/snippet/${id}`} className="block">
@@ -65,8 +66,12 @@ export function SnippetCard({
               >
                 <Heart
                   className="w-5 h-5"
-                  style={{ color: isFavorite ? '#EF4444' : colorValues.text.tertiary }}
-                  fill={isFavorite ? '#EF4444' : 'none'}
+                  style={{
+                    color: isFavorite
+                      ? colorValues.accent.error
+                      : colorValues.text.tertiary,
+                  }}
+                  fill={isFavorite ? colorValues.accent.error : "none"}
                 />
               </button>
             )}
@@ -78,20 +83,32 @@ export function SnippetCard({
               style={{
                 backgroundColor: colorValues.surface.elevated,
                 borderColor: colorValues.border.default,
-                color: colorValues.accent.primary
+                color: colorValues.accent.primary,
               }}
             >
               <Code2 className="w-3.5 h-3.5" />
               {language}
             </span>
-            <span className="flex items-center gap-1.5 text-xs" style={{ color: colorValues.text.tertiary }}>
+            <span
+              className="flex items-center gap-1.5 text-xs"
+              style={{ color: colorValues.text.tertiary }}
+            >
               <Clock className="w-3.5 h-3.5" />
               {formatDistanceToNow(new Date(createdAt), { addSuffix: true })}
             </span>
           </div>
 
-          <div className="border rounded-lg p-3 mb-4" style={{ backgroundColor: colorValues.background.primary, borderColor: colorValues.border.subtle }}>
-            <pre className="text-xs font-mono overflow-hidden" style={{ color: colorValues.text.secondary }}>
+          <div
+            className="border rounded-lg p-3 mb-4"
+            style={{
+              backgroundColor: colorValues.background.primary,
+              borderColor: colorValues.border.subtle,
+            }}
+          >
+            <pre
+              className="text-xs font-mono overflow-hidden"
+              style={{ color: colorValues.text.secondary }}
+            >
               <code>{truncatedPreview}</code>
             </pre>
           </div>
@@ -112,7 +129,10 @@ export function SnippetCard({
                 </span>
               ))}
               {tags.length > 3 && (
-                <span className="px-2.5 py-1 text-xs font-medium" style={{ color: colorValues.text.tertiary }}>
+                <span
+                  className="px-2.5 py-1 text-xs font-medium"
+                  style={{ color: colorValues.text.tertiary }}
+                >
                   +{tags.length - 3} more
                 </span>
               )}

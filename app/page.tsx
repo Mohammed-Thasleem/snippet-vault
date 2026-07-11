@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Code as Code2, Lock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { colorValues } from "@/lib/design-tokens";
+import {
+  backgrounds,
+  colorValues,
+  gradients,
+  overlays,
+  primaryButtonStyle,
+} from "@/lib/design-tokens";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -61,8 +67,7 @@ export default function LoginPage() {
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          backgroundImage: `radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                           radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)`,
+          backgroundImage: backgrounds.auth,
         }}
       />
 
@@ -76,7 +81,10 @@ export default function LoginPage() {
         >
           <div className="p-8">
             <div className="flex flex-col items-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#3B82F6] to-[#8B5CF6] rounded-2xl flex items-center justify-center mb-4">
+              <div
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                style={{ background: gradients.primary }}
+              >
                 <Code2 className="w-9 h-9 text-white" />
               </div>
               <h1
@@ -97,8 +105,8 @@ export default function LoginPage() {
               <div
                 className="mb-6 p-4 border rounded-lg"
                 style={{
-                  backgroundColor: "rgba(239, 68, 68, 0.1)",
-                  borderColor: "rgba(239, 68, 68, 0.2)",
+                  backgroundColor: overlays.error.background,
+                  borderColor: overlays.error.border,
                 }}
               >
                 <p
@@ -186,7 +194,14 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] hover:from-[#2563EB] hover:to-[#7C3AED] text-white font-semibold rounded-lg transition-all duration-200 shadow-lg shadow-[#3B82F6]/20"
+                className="w-full py-3 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg"
+                style={primaryButtonStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = gradients.buttonHover;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = gradients.button;
+                }}
               >
                 {loading ? "Loading..." : isSignUp ? "Sign Up" : "Sign In"}
               </Button>

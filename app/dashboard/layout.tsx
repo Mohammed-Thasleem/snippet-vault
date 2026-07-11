@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
-import { Sidebar } from '@/components/sidebar';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+import { Sidebar } from "@/components/sidebar";
+import { colorValues } from "@/lib/design-tokens";
 
 export default function DashboardLayout({
   children,
@@ -18,7 +19,7 @@ export default function DashboardLayout({
     const checkUser = async () => {
       const { data } = await supabase.auth.getSession();
       if (!data.session) {
-        router.push('/');
+        router.push("/");
         return;
       }
       setUser(data.session.user);
@@ -30,11 +31,11 @@ export default function DashboardLayout({
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (event, session) => {
         if (!session) {
-          router.push('/');
+          router.push("/");
         } else {
           setUser(session.user);
         }
-      }
+      },
     );
 
     return () => {
@@ -44,14 +45,23 @@ export default function DashboardLayout({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0B0F14] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B82F6]"></div>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: colorValues.background.primary }}
+      >
+        <div
+          className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2"
+          style={{ borderColor: colorValues.accent.primary }}
+        ></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0B0F14] flex">
+    <div
+      className="min-h-screen flex"
+      style={{ backgroundColor: colorValues.background.primary }}
+    >
       <Sidebar user={user} />
       <main className="flex-1">{children}</main>
     </div>
